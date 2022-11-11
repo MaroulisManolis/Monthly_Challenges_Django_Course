@@ -5,14 +5,13 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{ months_name|title }}</title>
+    <title>All Challenges</title>
 </head>
 <body>
-    <h1>Time for {{ months_name|title }}'s challenge!</h1>
-    {% if text is not None %}
-        <h2>{{ challenge_text }}</h2>
-    {% else %}
-        <p>You need to add a challenge for this month!</p>
-    {% endif %}
+    <ul>
+        {% for month in months %}
+            <li><a href="{% url 'month-challenge' month %}">{{ month|title }}</a></li>
+        {% endfor %}
+    </ul>
 </body>
 </html>

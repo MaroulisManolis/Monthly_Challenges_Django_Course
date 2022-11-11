@@ -15,15 +15,18 @@ monthly_challenges = {
     "september": "Plant your winter time plants!",
     "october": "Start exercising for at least 30 minutes per day!",
     "november": "Organise your vacation for abroad",
-    "december": "Pass Christmas time with all family members!"
+    "december": None
 }
 
 
 # Create your views here.
 
 def index(request):
-    list_items = ""
     months = list(monthly_challenges.keys())
+
+    return render(request, "challenges/index.html", {
+        "months": months
+    })
 
     for month in months:
         capitalized_month = month.capitalize()
