@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
+from django.http import Http404, HttpResponseNotFound, HttpResponseRedirect
 from django.urls import reverse
 
 
@@ -32,7 +32,6 @@ def index(request):
         capitalized_month = month.capitalize()
         month_path = reverse("month-challenge", args=[month])
         list_items += f"<li><a href=\"{month_path}\">{capitalized_month}</a></li>"
-
     response_data = f"<ul>{list_items}</ul>"
     return HttpResponse(response_data)
 
@@ -56,4 +55,4 @@ def monthly_challenge(request, month):
             "months_name": month
         })
     except:
-        return HttpResponseNotFound("<h1>This month is not supported!</h1>")
+        raise Http404()
